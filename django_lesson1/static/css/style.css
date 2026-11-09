@@ -1,0 +1,64 @@
+:root {
+    --brand-1: #1e3c72;
+    --brand-2: #2a5298;
+    --bg: #f1f5f9;
+    --card-radius: 16px;
+}
+
+body {
+    font-family: "Kantumruy Pro", "Noto Sans Khmer", "Segoe UI", sans-serif;
+    background:var(--bg);
+    color: #1e293b;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main { flex: 1; }
+
+.navbar {
+    background: linear-gradient(135deg, var(--brand-1), var(--brand-2)) !important;
+}
+.navbar .nav-link { border-radius: 8px; padding: .5rem .9rem !important; transition: background .2s; }
+.navbar .nav-link:hover { background: rgba(255, 255, 255, .15); }
+
+.card, .table-responsive {
+    border: 0;
+    border-radius: var(--card-radius);
+    box-shadow: 0 4px 16px rgba(15, 23, 42, .08);
+}
+
+.stat-card {
+    color: #fff;
+    border-radius: var(--card-radius);
+    padding: 1.5rem;
+    transition: transform .2s, box-shadow .2s;
+    box-shadow: 0 6px 18px rgba(15, 23, 42, .15);
+}
+.stat-card:hover { transform: translateY(-4px); }
+.stat-card .number { font-size: 2.5rem; font-weight: 700; line-height: 1; }
+.stat-card .label { opacity: .9; margin-top: .4rem; }
+.stat-card .icon { font-size: 2.2rem; opacity: .8; }
+
+.bg-grad-blue   { background: linear-gradient(135deg, #2563eb, #1e40af); }
+.bg-grad-green  { background: linear-gradient(135deg, #10b981, #047857); }
+.bg-grad-orange { background: linear-gradient(135deg, #f59e0b, #d97706); }
+.bg-grad-purple { background: linear-gradient(135deg, #8b5cf6, #6d28d9); }
+
+.hero {
+    background: linear-gradient(135deg, var(--brand-1), var(--brand-2));
+    color: #fff;
+    border-radius: var(--card-radius);
+    padding: 2.5rem 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 8px 24px rgba(30, 60, 114, .3);
+}
+
+.table thead th { background: #cbced2; color: #475569; font-weight: 600; border-bottom: 2px solid #e2e8f0; }
+.table tbody tr { transition: background .15s; }
+
+.btn { border-radius: 10px; }
+.form-control, .form-select { border-radius: 10px; padding: .6rem .9rem; }
+.form-control:focus { border-color: var(--brand-2); box-shadow: 0 0 0 .2rem rgba(42, 82, 152, .2); }
+
+footer { background: #fff; }

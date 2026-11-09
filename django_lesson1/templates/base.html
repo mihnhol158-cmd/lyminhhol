@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="km">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}ប្រព័ន្ធគ្រប់គ្រងនិស្សិត{% endblock %} - BBU</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="{% url 'home' %}">
+                <i class="bi bi-mortarboard-fill me-1"></i> BBU Student System
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'students:student_list' %}"><i class="bi bi-people me-1"></i>និស្សិត</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'courses:course_list' %}"><i class="bi bi-book me-1"></i>មុខវិជ្ជា</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'enrollments:enrollment_list' %}"><i class="bi bi-journal-check me-1"></i>ការចុះឈ្មោះ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/api/"><i class="bi bi-code-slash me-1"></i>API</a></li>
+                </ul>
+                <ul class="navbar-nav ms-auto align-items-lg-center">
+                    {% if user.is_authenticated %}
+                        <li class="nav-item"><span class="nav-link text-white"><i class="bi bi-person-circle me-1"></i>{{ user.username }}</span></li>
+                        <li class="nav-item">
+                            <form method="post" action="{% url 'logout' %}" class="d-inline">
+                                {% csrf_token %}
+                                <button class="btn btn-outline-light btn-sm ms-lg-2">ចាកចេញ</button>
+                            </form>
+                        </li>
+                    {% else %}
+                        <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">ចូលប្រើប្រាស់</a></li>
+                        <li class="nav-item"><a class="btn btn-warning btn-sm ms-lg-2" href="{% url 'students:register' %}">ចុះឈ្មោះ</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container my-4">
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show shadow-sm" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        {% endfor %}
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="text-center py-3 mt-5 border-top">
+        <p class="text-muted mb-0 small">© 2026 Build Bright University · Student Management System</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>
